@@ -6,42 +6,51 @@ namespace DataStructureAlgorithm
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Hello binary search");
 
-            
+            string[] wordList = ReadWordList();
 
+            Console.Write("Enter a word to search: ");
+            string searchWord = Console.ReadLine();
 
-            Console.WriteLine("Prime numbers between 0 and 1000:");
-            FindPrimeNumbers(0, 1000);
+            Array.Sort(wordList);
+
+            if (BinarySearch(wordList, searchWord))
+                Console.WriteLine("The word is found in the list.");
+            else
+                Console.WriteLine("The word is not found in the list.");
+
+            Console.ReadLine();
         }
 
-        static void FindPrimeNumbers(int first, int last)
+        static string[] ReadWordList()
         {
-            for (int number = first; number <= last; number++)
-            {
-                if (IsPrime(number))
-                {
-                    Console.WriteLine(number);
-                }
-            }
+            Console.Write("Enter the list of words separated by commas: ");
+            string wordListInput = Console.ReadLine();
+
+            return wordListInput.Split(',');
         }
 
-        static bool IsPrime(int number)
+        static bool BinarySearch(string[] wordList, string searchWord)
         {
-            if (number < 2)
+            int left = 0;
+            int right = wordList.Length - 1;
+
+            while (left <= right)
             {
-                return false;
+                int middle = (left + right) / 2;
+
+                int comparisonResult = string.Compare(searchWord, wordList[middle]);
+
+                if (comparisonResult == 0)
+                    return true;
+                else if (comparisonResult < 0)
+                    right = middle - 1;
+                else
+                    left = middle + 1;
             }
 
-            for (int i = 2; i <= Math.Sqrt(number); i++)
-            {
-                if (number % i == 0)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-
+            return false;
         }
     }
 }
