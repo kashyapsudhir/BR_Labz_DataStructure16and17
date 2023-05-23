@@ -5,31 +5,25 @@ namespace DataStructureAloorithm
     {
         public static void Main(string[] args) 
         {
-            Console.WriteLine("Hello Data Structure Algorithm Program");
-
-            string[] names = { "Sudhir", "Ram", "Sonu Kumar", "Abhishek" };
-            InsertSort(names);
-            foreach (var item in names)
+            int[] array = { 92, 15, 22, 90, 11,34 };
+            int temp;
+            for (int j = 0; j <= array.Length - 2; j++)
             {
-                Console.WriteLine(item);
-            }
-        }
-
-        static void InsertSort(IComparable[] array)
-        {
-            int i, j;
-
-            for (i = 1; i < array.Length; i++)
-            {
-                IComparable value = array[i];
-                j = i - 1;
-                while ((j >= 0) && (array[j].CompareTo(value) > 0))
+                for (int i = 0; i <= array.Length - 2; i++)
                 {
-                    array[j + 1] = array[j];
-                    j--;
+                    if (array[i] > array[i + 1])
+                    {
+                        temp = array[i + 1];
+                        array[i + 1] = array[i];
+                        array[i] = temp;
+                    }
                 }
-                array[j + 1] = value;
             }
+            Console.WriteLine("Sorted:");
+            foreach (int p in array)
+                Console.Write(p + " ");
+            Console.Read();
         }
+    
     }
 }
