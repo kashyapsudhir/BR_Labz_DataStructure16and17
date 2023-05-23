@@ -1,36 +1,47 @@
-﻿using DataStructureAlgorithm;
+﻿
 using System;
-namespace DataStructureAloorithm
+namespace DataStructureAlgorithm
 {
     class Program
     {
-        public static void Main(string[] args) 
+        public static void Main(string[] args)
         {
 
-            Console.WriteLine("hello mergeSort");
+            
 
-            List<string> arr = new List<string> { "zebra", "apple", "banana", "orange", "grape" };
 
-            Console.WriteLine("Before sorting:");
-            PrintList(arr);
-
-            MergeSort.Sort(arr);
-
-            Console.WriteLine("\nAfter sorting:");
-            PrintList(arr);
+            Console.WriteLine("Prime numbers between 0 and 1000:");
+            FindPrimeNumbers(0, 1000);
         }
 
-        private static void PrintList(List<string> arr)
+        static void FindPrimeNumbers(int first, int last)
         {
-            foreach (string item in arr)
+            for (int number = first; number <= last; number++)
             {
-                Console.Write(item + " ");
+                if (IsPrime(number))
+                {
+                    Console.WriteLine(number);
+                }
             }
-            Console.WriteLine();
+        }
 
+        static bool IsPrime(int number)
+        {
+            if (number < 2)
+            {
+                return false;
+            }
 
+            for (int i = 2; i <= Math.Sqrt(number); i++)
+            {
+                if (number % i == 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
 
         }
-    
     }
 }
