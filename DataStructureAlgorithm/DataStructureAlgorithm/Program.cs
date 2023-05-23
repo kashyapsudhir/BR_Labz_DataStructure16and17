@@ -7,34 +7,28 @@ namespace DataStructureAloorithm
         {
             Console.WriteLine("Hello Data Structure Algorithm Program");
 
+            string[] names = { "Sudhir", "Ram", "Sonu Kumar", "Abhishek" };
+            InsertSort(names);
+            foreach (var item in names)
             {
-                string str = "SUDHIR";
-                char[] MyCharArray = str.ToCharArray();
-                Permute(MyCharArray, 0, 2);
+                Console.WriteLine(item);
             }
+        }
 
-            static void Permute(char[] arry, int i, int n)
+        static void InsertSort(IComparable[] array)
+        {
+            int i, j;
+
+            for (i = 1; i < array.Length; i++)
             {
-                int j;
-                if (i == n)
-                    Console.WriteLine(arry);
-                else
+                IComparable value = array[i];
+                j = i - 1;
+                while ((j >= 0) && (array[j].CompareTo(value) > 0))
                 {
-                    for (j = i; j <= n; j++)
-                    {
-                        Swap(ref arry[i], ref arry[j]);
-                        Permute(arry, i + 1, n);
-                        Swap(ref arry[i], ref arry[j]); //backtrack
-                    }
+                    array[j + 1] = array[j];
+                    j--;
                 }
-            }
-
-            static void Swap(ref char a, ref char b)
-            {
-                char tmp;
-                tmp = a;
-                a = b;
-                b = tmp;
+                array[j + 1] = value;
             }
         }
     }
